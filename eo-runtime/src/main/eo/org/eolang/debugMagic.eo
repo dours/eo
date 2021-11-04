@@ -2,7 +2,7 @@
 +rt jvm org.eolang:eo-runtime:0.0.0
 
 # a magical object, which should only be used
-# to debug EO code
+# to debug EO code. A completely immutable EO code.
 [] > debugMagic
 
   # print any object to stdout somehow and return
@@ -14,9 +14,8 @@
   # this one basically prints new Dataized(obj).take().toString()
   [prefix obj] > printDataized /?
 
-  # Dataizes all provided steps EXCEPT the last one
-  # and returns last one.
-  # Use case: all the steps except the last one are debug printers
-  [steps...] > seq
-    steps.length > @
-
+  # Dataizes the first argument
+  # and returns the last one.
+  # Expected use case: the first one is a printDataized
+  # (or a seq of many printers)
+  [a b] > seq /?
