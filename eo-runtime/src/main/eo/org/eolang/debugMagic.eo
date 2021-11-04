@@ -1,0 +1,12 @@
++package org.eolang
++rt jvm org.eolang:eo-runtime:0.0.0
+
+# a magical object, which should only be used
+# to debug EO code
+[] > debugMagic /?
+
+  # print any object to stdout somehow and return
+  # the object intact (to be used inside expressions
+  # in immutable code). Uses .toString() in
+  # java2eo translator
+  [prefix obj] > print /?
