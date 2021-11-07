@@ -24,12 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtComposite;
-import org.eolang.AtFree;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhDefault;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * LESS THAN OR EQUAL TO.
@@ -41,11 +36,11 @@ public class EOfloat$EOleq extends PhDefault {
     public EOfloat$EOleq(final Phi sigma) {
         super(sigma);
         this.add("x", new AtFree());
-        this.add("φ", new AtComposite(this, self -> new Data.ToPhi(
+        this.add("φ", new AtOnce(new AtComposite(this, self -> new Data.ToPhi(
             new Dataized(self.attr("ρ").get()).take(Double.class)
             <=
             new Dataized(self.attr("x").get()).take(Double.class)
-        )));
+        ))));
     }
 
 }

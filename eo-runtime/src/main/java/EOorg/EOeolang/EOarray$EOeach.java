@@ -24,14 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtComposite;
-import org.eolang.AtFree;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhCopy;
-import org.eolang.PhDefault;
-import org.eolang.PhWith;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * EACH.
@@ -43,7 +36,7 @@ public class EOarray$EOeach extends PhDefault {
     public EOarray$EOeach(final Phi sigma) {
         super(sigma);
         this.add("f", new AtFree());
-        this.add("φ", new AtComposite(this, self -> {
+        this.add("φ", new AtOnce(new AtComposite(this, self -> {
             final Phi[] array = new Dataized(
                 self.attr("ρ").get()
             ).take(Phi[].class);
@@ -57,7 +50,7 @@ public class EOarray$EOeach extends PhDefault {
                 ).take();
             }
             return new Data.ToPhi(true);
-        }));
+        })));
     }
 
 }

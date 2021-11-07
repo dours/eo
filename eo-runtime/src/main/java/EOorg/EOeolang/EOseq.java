@@ -24,12 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtComposite;
-import org.eolang.AtVararg;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhDefault;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * SEQ.
@@ -46,7 +41,7 @@ public class EOseq extends PhDefault {
     public EOseq(final Phi sigma) {
         super(sigma);
         this.add(EOseq.NAME, new AtVararg());
-        this.add("φ", new AtComposite(this, self -> {
+        this.add("φ", new AtOnce(new AtComposite(this, self -> {
             final Phi[] args = new Dataized(
                 self.attr(EOseq.NAME).get()
             ).take(Phi[].class);
@@ -55,7 +50,7 @@ public class EOseq extends PhDefault {
                 result = new Dataized(arg).take();
             }
             return new Data.ToPhi(result);
-        }));
+        })));
     }
 
 }

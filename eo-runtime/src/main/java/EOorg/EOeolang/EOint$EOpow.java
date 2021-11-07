@@ -24,13 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtFree;
-import org.eolang.AtComposite;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhDefault;
-import org.eolang.PhWith;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * POW.
@@ -42,7 +36,7 @@ public class EOint$EOpow extends PhDefault {
     public EOint$EOpow(final Phi sigma) {
         super(sigma);
         this.add("x", new AtFree());
-        this.add("φ", new AtComposite(this, self -> {
+        this.add("φ", new AtOnce(new AtComposite(this, self -> {
             final long rho = new Dataized(self.attr("ρ").get()).take(Long.class);
             final long x = new Dataized(self.attr("x").get()).take(Long.class);
             if (rho == 0L && x < 0L) {
@@ -50,7 +44,7 @@ public class EOint$EOpow extends PhDefault {
                 return new PhWith(new EOerror(Phi.Φ), "msg", msg);
             }
             return new Data.ToPhi((long) Math.pow(rho, x));
-        }));
+        })));
     }
 
 }

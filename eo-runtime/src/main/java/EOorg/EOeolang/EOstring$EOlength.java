@@ -24,11 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtComposite;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhDefault;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * LENGTH.
@@ -39,11 +35,11 @@ public class EOstring$EOlength extends PhDefault {
 
     public EOstring$EOlength(final Phi sigma) {
         super(sigma);
-        this.add("φ", new AtComposite(this, self -> new Data.ToPhi(
+        this.add("φ", new AtOnce(new AtComposite(this, self -> new Data.ToPhi(
             (long) new Dataized(
                 self.attr("ρ").get()
             ).take(String.class).length()
-        )));
+        ))));
     }
 
 }

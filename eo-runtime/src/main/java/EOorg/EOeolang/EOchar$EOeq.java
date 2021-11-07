@@ -24,12 +24,7 @@
 
 package EOorg.EOeolang;
 
-import org.eolang.AtFree;
-import org.eolang.AtComposite;
-import org.eolang.Data;
-import org.eolang.Dataized;
-import org.eolang.PhDefault;
-import org.eolang.Phi;
+import org.eolang.*;
 
 /**
  * CHAR.EQ.
@@ -41,7 +36,7 @@ public class EOchar$EOeq extends PhDefault {
     public EOchar$EOeq(final Phi sigma) {
         super(sigma);
         this.add("c", new AtFree());
-        this.add("φ", new AtComposite(this, self -> {
+        this.add("φ", new AtOnce(new AtComposite(this, self -> {
             final char mine = new Dataized(
                 self.attr("ρ").get()
             ).take(Character.class);
@@ -49,7 +44,7 @@ public class EOchar$EOeq extends PhDefault {
                 self.attr("c").get()
             ).take(Character.class);
             return new Data.ToPhi(mine == another);
-        }));
+        })));
     }
 
 }

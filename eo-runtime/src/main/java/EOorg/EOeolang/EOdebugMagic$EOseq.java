@@ -7,10 +7,10 @@ public class EOdebugMagic$EOseq extends PhDefault {
         super(sigma);
         this.add("a", new AtFree());
         this.add("b", new AtFree());
-        this.add("φ", new AtComposite(this, self -> {
+        this.add("φ", new AtOnce(new AtComposite(this, self -> {
             new Dataized(self.attr("a").get()).take();
             return new PhMethod(self, "b");
-        }));
+        })));
     }
 
 }
