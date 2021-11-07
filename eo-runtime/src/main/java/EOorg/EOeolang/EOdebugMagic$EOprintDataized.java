@@ -14,8 +14,8 @@ public final class EOdebugMagic$EOprintDataized extends PhDefault {
             final String prefix = new Dataized(
                     rho.attr(PREFIX).get()
             ).take(String.class);
-            System.out.println(prefix +
-                    (new Dataized(rho.attr(OBJ).get()).take()).toString());
+            System.err.println(prefix +
+                    (new Dataized(rho.attr(OBJ).get()).take()).toString()  + " at " + java.time.LocalTime.now());
             return new PhMethod(rho, "obj");
         })));
     }
